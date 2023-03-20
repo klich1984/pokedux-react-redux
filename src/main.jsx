@@ -5,11 +5,16 @@ import './index.css'
 import { Provider } from 'react-redux'
 import { applyMiddleware, compose, legacy_createStore as createStore } from 'redux'
 import { pokemonsReducer } from './reducers/pokemons'
-import { featuring, logger } from './middlewares'
+import {
+  addNumberToName,
+  featuring,
+  logger,
+  upperCaseFirstLetterName,
+} from './middlewares'
 
 const composeEnhancers = compose(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(logger, featuring)
+  applyMiddleware(logger, featuring, upperCaseFirstLetterName, addNumberToName)
 )
 
 const store = createStore(pokemonsReducer, composeEnhancers)
