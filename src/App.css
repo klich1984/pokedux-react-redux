@@ -1,0 +1,30 @@
+/* @import '~antd/dist/antd.css'; */
+
+#root {
+  max-width : 1280px;
+  margin    : 0 auto;
+  padding   : 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.pokemonList {
+  display                 : flex;
+  flex-wrap               : wrap;
+  /* display              : grid;
+  grid-template-columns   : repeat(4, 1fr); */
+  justify-content         : center;
+  gap                     : 2rem;
+  margin-block-start      : 3rem;
+}
+
+.logo-pokedux {
+  margin-block-end: 2rem;
+}
