@@ -20,7 +20,7 @@ export const useFetch = (url) => {
         }
         let json = await res.json()
 
-        let arrayPokemons = []
+        // let arrayPokemons = []
 
         json?.results?.forEach(async (el) => {
           let res = await fetch(el.url),
@@ -32,9 +32,9 @@ export const useFetch = (url) => {
             name: json.name,
             avatar: json.sprites.other.home.front_default,
           }
-          // setPokemons((pokemons) => [...pokemons, pokemon])
-          arrayPokemons.push(pokemon)
-          setPokemons(arrayPokemons)
+          setPokemons((pokemons) => [...pokemons, pokemon])
+          // arrayPokemons.push(pokemon)
+          // setPokemons(arrayPokemons)
         })
 
         setIsPending(false)

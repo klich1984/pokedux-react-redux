@@ -4,7 +4,7 @@ import { StarOutlined } from '@ant-design/icons'
 
 const { Meta } = Card
 
-const PokemonCard = ({ name, avatar }) => {
+const PokemonCard = ({ name }) => {
   return (
     <>
       <Card
@@ -13,8 +13,8 @@ const PokemonCard = ({ name, avatar }) => {
         extra={<StarOutlined />}
         cover={
           <img
-            // src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg'
-            src={avatar}
+            src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg'
+            // src={avatar}
             alt='Ditto'
           />
         }
