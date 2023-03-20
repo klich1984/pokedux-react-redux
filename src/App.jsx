@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { connect } from 'react-redux'
 import './App.css'
 
 import { Col } from 'antd'
@@ -6,14 +7,9 @@ import Searcher from './components/Searcher'
 import PokemonList from './components/PokemonList'
 import logoPokedux from './assets/logoPokedux.svg'
 import { getPokemons } from './api'
-// import { useFetch } from './hooks/useFetch'
+import { setPokemons as setPokemonsActions } from './actions'
 
-const URL = 'https://pokeapi.co/api/v2/pokemon?limit=50'
-
-function App() {
-  // const { pokemons, isPending } = useFetch(URL)
-  const [pokemons, setPokemons] = useState([])
-
+function App({ pokemons, setPokemons }) {
   useEffect(() => {
     const getData = async () => {
       const data = await getPokemons()
@@ -23,7 +19,6 @@ function App() {
     getData()
   }, [])
 
-  // if (!isPending) {
   return (
     <div className='App'>
       <Col span={10} offset={7} className='logo-pokedux'>
@@ -36,6 +31,13 @@ function App() {
     </div>
   )
 }
-// }
 
-export default App
+const mapStateToProps = (state) => ({
+  pokemons: state.pokemons,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  setPokemons: (value) => dispatch(setPokemonsActions(value)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
