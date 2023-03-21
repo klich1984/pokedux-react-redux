@@ -4,7 +4,12 @@ const PokemonList = ({ pokemons }) => {
   return (
     <div className='pokemonList'>
       {pokemons?.map((pokemon, index) => (
-        <PokemonCard key={`card-${index}`} name={pokemon.name} />
+        <PokemonCard
+          key={`card-${index}`}
+          name={pokemon.name}
+          avatar={pokemon.sprites.other.dream_world.front_default}
+          abilities={pokemon.abilities}
+        />
       ))}
     </div>
   )

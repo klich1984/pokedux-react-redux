@@ -35,3 +35,14 @@ export const getPokemons = async () => {
     console.log(error)
   }
 }
+
+export const getPokemonDetail = async (pokemon) => {
+  try {
+    const detailsPokemons = await fetch(pokemon.url)
+    const jsonDetail = await detailsPokemons.json()
+
+    return jsonDetail
+  } catch (error) {
+    console.log('Ocurrio un error', error)
+  }
+}

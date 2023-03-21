@@ -28,3 +28,11 @@
 .logo-pokedux {
   margin-block-end: 2rem;
 }
+
+.pokemonList .ant-card-cover {
+  padding: 1rem;
+}
+
+.pokemonList img {
+  height: 8rem;
+}
