@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import thunk from 'redux-thunk'
 import App from './App'
 import './index.css'
 import { Provider } from 'react-redux'
@@ -7,9 +8,10 @@ import { applyMiddleware, compose, legacy_createStore as createStore } from 'red
 import { pokemonsReducer } from './reducers/pokemons'
 import { addNumberToName, upperCaseFirstLetterName } from './middlewares'
 
-const composeEnhancers = compose(
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(upperCaseFirstLetterName, addNumberToName)
+const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const composeEnhancers = composeAlt(
+  applyMiddleware(thunk, upperCaseFirstLetterName, addNumberToName)
 )
 
 const store = createStore(pokemonsReducer, composeEnhancers)

@@ -14,21 +14,21 @@ export const featuring = (store) => (next) => (actionInfo) => {
 
 export const addNumberToName = (store) => (next) => (actionInfo) => {
   const featured = [
-    ...actionInfo.action.payload.map((pokemon, index) => ({
+    ...actionInfo.payload.map((pokemon, index) => ({
       ...pokemon,
       name: `${index + 1} - ${pokemon.name}`,
     })),
   ]
   const updateActionInfo = {
     ...actionInfo,
-    action: { ...actionInfo.action, payload: featured },
+    payload: featured,
   }
   next(updateActionInfo)
 }
 
 export const upperCaseFirstLetterName = (store) => (next) => (actionInfo) => {
   const featured = [
-    ...actionInfo.action.payload.map((pokemon) => ({
+    ...actionInfo.payload.map((pokemon) => ({
       ...pokemon,
       name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
     })),
@@ -36,10 +36,7 @@ export const upperCaseFirstLetterName = (store) => (next) => (actionInfo) => {
 
   const updateActionInfo = {
     ...actionInfo,
-    action: {
-      ...actionInfo.action,
-      payload: featured,
-    },
+    payload: featured,
   }
   next(updateActionInfo)
 }
