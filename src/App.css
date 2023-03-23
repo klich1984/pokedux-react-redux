@@ -36,3 +36,11 @@
 .pokemonList img {
   height: 8rem;
 }
+
+.ant-spin {
+  margin-block-start: 3rem;
+}
+
+:where(.css-dev-only-do-not-override-ph9edi).ant-spin-lg .ant-spin-dot {
+  font-size: 68px;
+}

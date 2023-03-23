@@ -1,3 +1,5 @@
+import { SET_LOADING, SET_POKEMONS } from '../actions/types'
+
 export const logger = (store) => (next) => (action) => {
   console.log(action)
   next(action)
@@ -13,30 +15,38 @@ export const featuring = (store) => (next) => (actionInfo) => {
 }
 
 export const addNumberToName = (store) => (next) => (actionInfo) => {
-  const featured = [
-    ...actionInfo.payload.map((pokemon, index) => ({
-      ...pokemon,
-      name: `${index + 1} - ${pokemon.name}`,
-    })),
-  ]
-  const updateActionInfo = {
-    ...actionInfo,
-    payload: featured,
+  if (actionInfo.type === SET_POKEMONS) {
+    const featured = [
+      ...actionInfo.payload.map((pokemon, index) => ({
+        ...pokemon,
+        name: `${index + 1} - ${pokemon.name}`,
+      })),
+    ]
+    const updateActionInfo = {
+      ...actionInfo,
+      payload: featured,
+    }
+    next(updateActionInfo)
+  } else if (actionInfo.type === SET_LOADING) {
+    next(actionInfo)
   }
-  next(updateActionInfo)
 }
 
 export const upperCaseFirstLetterName = (store) => (next) => (actionInfo) => {
-  const featured = [
-    ...actionInfo.payload.map((pokemon) => ({
-      ...pokemon,
-      name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
-    })),
-  ]
+  if (actionInfo.type === SET_POKEMONS) {
+    const featured = [
+      ...actionInfo.payload.map((pokemon) => ({
+        ...pokemon,
+        name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
+      })),
+    ]
 
-  const updateActionInfo = {
-    ...actionInfo,
-    payload: featured,
+    const updateActionInfo = {
+      ...actionInfo,
+      payload: featured,
+    }
+    next(updateActionInfo)
+  } else if (actionInfo.type === SET_LOADING) {
+    next(actionInfo)
   }
-  next(updateActionInfo)
 }
