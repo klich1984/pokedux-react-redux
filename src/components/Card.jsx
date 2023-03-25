@@ -4,11 +4,9 @@ import { StarOutlined } from '@ant-design/icons'
 
 const { Meta } = Card
 
-const PokemonCard = ({ name, avatar, abilities }) => {
-  let allAbilities = abilities.map((item) =>
-    item.is_hidden ? item.ability.name : 'Oculta'
-  )
-  allAbilities = allAbilities.join(', ')
+const PokemonCard = ({ name, avatar, types }) => {
+  let allTypes = types.map((item) => item.type.name)
+  allTypes = allTypes.join(', ')
 
   return (
     <>
@@ -18,7 +16,7 @@ const PokemonCard = ({ name, avatar, abilities }) => {
         extra={<StarOutlined />}
         cover={<img src={avatar} alt={name} />}
       >
-        <Meta description={allAbilities} title='Pokemon' />
+        <Meta description={allTypes} title='Pokemon' />
       </Card>
     </>
   )

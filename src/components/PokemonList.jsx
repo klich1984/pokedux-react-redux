@@ -8,7 +8,7 @@ const PokemonList = ({ pokemons }) => {
           key={`card-${index}`}
           name={pokemon.name}
           avatar={pokemon.sprites.other.dream_world.front_default}
-          abilities={pokemon.abilities}
+          types={pokemon.types}
         />
       ))}
     </div>
