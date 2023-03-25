@@ -27,7 +27,7 @@ export const addNumberToName = (store) => (next) => (actionInfo) => {
       payload: featured,
     }
     next(updateActionInfo)
-  } else if (actionInfo.type === SET_LOADING) {
+  } else {
     next(actionInfo)
   }
 }
@@ -46,7 +46,7 @@ export const upperCaseFirstLetterName = (store) => (next) => (actionInfo) => {
       payload: featured,
     }
     next(updateActionInfo)
-  } else if (actionInfo.type === SET_LOADING) {
+  } else {
     next(actionInfo)
   }
 }

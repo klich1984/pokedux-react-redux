@@ -9,6 +9,8 @@ const PokemonList = ({ pokemons }) => {
           name={pokemon.name}
           avatar={pokemon.sprites.other.dream_world.front_default}
           types={pokemon.types}
+          id={pokemon.id}
+          favorite={pokemon.favorite}
         />
       ))}
     </div>
