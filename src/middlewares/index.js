@@ -1,5 +1,3 @@
-import { SET_POKEMONS } from '../actions/types'
-
 export const logger = (store) => (next) => (action) => {
   console.log(action)
   next(action)
@@ -15,7 +13,7 @@ export const featuring = (store) => (next) => (actionInfo) => {
 }
 
 export const addNumberToName = (store) => (next) => (actionInfo) => {
-  if (actionInfo.type === SET_POKEMONS) {
+  if (actionInfo.type === 'data/setPokemons') {
     const featured = [
       ...actionInfo.payload.map((pokemon, index) => ({
         ...pokemon,
@@ -33,7 +31,7 @@ export const addNumberToName = (store) => (next) => (actionInfo) => {
 }
 
 export const upperCaseFirstLetterName = (store) => (next) => (actionInfo) => {
-  if (actionInfo.type === SET_POKEMONS) {
+  if (actionInfo.type === 'data/setPokemons') {
     const featured = [
       ...actionInfo.payload.map((pokemon) => ({
         ...pokemon,
