@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { get } from 'immutable'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { getIn } from 'immutable'
 import './App.css'
 
 import { Col, Spin } from 'antd'
@@ -11,9 +11,11 @@ import { getPokemons } from './api'
 import { getPokemonsWithDetails, setLoading } from './actions'
 
 function App() {
-  const pokemons = useSelector((state) => get(state, 'pokemons')).toJS()
+  const pokemons = useSelector((state) =>
+    getIn(state, ['data', 'pokemons'], shallowEqual)
+  ).toJS()
   const dispatch = useDispatch()
-  const loading = useSelector((state) => get(state, 'loading'))
+  const loading = useSelector((state) => getIn(state, ['ui', 'loading']))
 
   useEffect(() => {
     const getData = async () => {
