@@ -1,4 +1,4 @@
-import { SET_LOADING, SET_POKEMONS } from '../actions/types'
+import { SET_POKEMONS } from '../actions/types'
 
 export const logger = (store) => (next) => (action) => {
   console.log(action)

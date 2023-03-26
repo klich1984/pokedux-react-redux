@@ -5,7 +5,6 @@ export const getPokemons = async () => {
     let res = await fetch(URL)
 
     if (!res.ok) {
-      // eslint-disable-next-line no-throw-literal
       throw {
         err: true,
         status: res.status,
@@ -13,22 +12,6 @@ export const getPokemons = async () => {
       }
     }
     let json = await res.json()
-    // console.log('🚀 ~ file: index.js:16 ~ getPokemons ~ json:', json)
-
-    // json?.results?.forEach(async (el) => {
-    //   let res = await fetch(el.url),
-    //     json = await res.json()
-
-    //   // console.log(json)
-    //   let pokemon = {
-    //     id: json.id * -1,
-    //     name: json.name,
-    //     avatar: json.sprites.front_default,
-    //   }
-    //   // console.log('🚀 ~ file: index.js:28 ~ json?.results?.forEach ~ pokemon:', pokemon)
-
-    //   arrPokemons.push(pokemon)
-    // })
 
     return json.results
   } catch (error) {
