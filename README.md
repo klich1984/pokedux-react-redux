@@ -4,4 +4,4 @@ Application created following the platzi course react-redux-profesional
 
 ## View
 
-![Gif](https://i.imgur.com/j0AfDGk.gif)
+![Gif](./src/assets/chrome_AMoYFXtdrN.gif)
