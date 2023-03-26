@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { Card } from 'antd'
 import ButtonStart from './ButtonStart.jsx'
-import { setFavorite } from '../actions/index.js'
+import { setFavorite } from '../slices/dataSlice.js'
 
 const { Meta } = Card
 
