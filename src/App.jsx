@@ -9,7 +9,7 @@ import PokemonList from './components/PokemonList'
 import logoPokedux from './assets/logoPokedux.svg'
 
 function App() {
-  const pokemons = useSelector((state) => state.data.pokemons, shallowEqual)
+  const state = useSelector((state) => state.data, shallowEqual)
   const loading = useSelector((state) => state.ui.loading)
 
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ function App() {
           <Spin spinning size='large' />
         </Col>
       ) : (
-        <PokemonList pokemons={pokemons} />
+        <PokemonList pokemons={state.isSearch ? state.searchPokemons : state.pokemons} />
       )}
     </div>
   )

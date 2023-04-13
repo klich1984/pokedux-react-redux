@@ -8,7 +8,7 @@ import rootRducer from './reducers/rootReducer'
 import { applyMiddleware, compose, legacy_createStore as createStore } from 'redux'
 import { addNumberToName, upperCaseFirstLetterName } from './middlewares'
 
-const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeAlt = compose
 
 const composeEnhancers = composeAlt(
   applyMiddleware(thunk, upperCaseFirstLetterName, addNumberToName)
