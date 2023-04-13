@@ -1,12 +1,31 @@
 import React from 'react'
 import { Input } from 'antd'
-
-const { Search } = Input
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
+import { filterPokemonSearch } from '../slices/dataSlice.js'
 
 const Searcher = () => {
+  const state = useSelector((state) => state.data, shallowEqual)
+  const loading = useSelector((state) => state.ui.loading)
+
+  const dispatch = useDispatch()
+
+  const handleChange = (e) => {
+    if (e.target.value !== '') {
+      const searchResult = state.pokemons.filter((pokemon) => {
+        const name = pokemon.name.toLocaleLowerCase()
+        const value = e.target.value.toLocaleLowerCase()
+
+        return name.includes(value)
+      })
+      dispatch(filterPokemonSearch(searchResult))
+    } else {
+      dispatch(filterPokemonSearch([]))
+    }
+  }
+
   return (
     <>
-      <Search placeholder='buscar pokemon...' enterButton />
+      <Input placeholder='buscar pokemon...' onChange={handleChange} disabled={loading} />
     </>
   )
 }
