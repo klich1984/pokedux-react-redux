@@ -44,3 +44,52 @@
 :where(.css-dev-only-do-not-override-ph9edi).ant-spin-lg .ant-spin-dot {
   font-size: 68px;
 }
+
+.label {
+  position  : absolute;
+  left      : 16px;
+  top       : 16px;
+  padding   : 0.2px;
+  color     : #b3b3b3;
+  transition: all 0.2s ease-out;
+  z-index   : 1;
+}
+
+.ant-input {
+  padding   : 0.8rem;
+  height    : 100%;
+  font-size : 18px;
+  outline   : none;
+  transition: all 0.3s ease-in;
+}
+
+.label::before {
+  content         : "";
+  position        : absolute;
+  left            : -4px;
+  top             : 6px;
+  width           : 100%;
+  height          : 12px;
+  padding-inline  : 6px;
+  background-color: #fff;
+  border-radius   : 50px;
+  z-index         : -1;
+}
+
+.ant-input:focus+.label,
+.filled {
+  top      : -11px;
+  left     : 8px;
+  color    : #878787;
+  font-size: 14px;
+}
+
+.ant-input::placeholder {
+  font-size : 16px;
+  opacity   : 0;
+  transition: all 0.3s ease-out;
+}
+
+.ant-input:focus::placeholder {
+  opacity: 1;
+}
