@@ -69,7 +69,6 @@
   left            : -4px;
   top             : 6px;
   width           : 100%;
-  height          : 12px;
   padding-inline  : 6px;
   background-color: #fff;
   border-radius   : 50px;
@@ -82,6 +81,11 @@
   left     : 8px;
   color    : #878787;
   font-size: 14px;
+}
+
+.ant-input:focus+.label::before,
+.filled {
+  height: 12px;
 }
 
 .ant-input::placeholder {
