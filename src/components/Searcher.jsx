@@ -43,7 +43,7 @@ const Searcher = () => {
         disabled={loading}
         onBlur={handleBlur}
         onFocus={handleFocus}
-        autoComplete
+        autoComplete='true'
       />
       <label className={`label ${search.filled ? 'filled' : ''}`} htmlFor='search'>
         buscar pokemon
