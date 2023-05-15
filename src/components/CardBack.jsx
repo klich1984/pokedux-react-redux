@@ -14,14 +14,14 @@ const CardBack = ({ abilities, stats, id, experience }) => {
       <div ref={cardBeforeRef} className='card__back--body-card'>
         <div className='card__back--button'>
           <button onClick={handleClikBefore} className='pulso'>
-            <img src='../assets/back.png' alt='row' />
+            <img src='assets/back.png' alt='row' />
           </button>
         </div>
         <div className='card__back--stats'>
           <h3>Stats</h3>
           <div className='stats--items'>
             <div className='stats--image'>
-              <img src={`../assets/exp.png`} alt='experience' />
+              <img src={`assets/exp.png`} alt='experience' />
             </div>
             <div className='stats--progress'>
               <label htmlFor='experience'>
@@ -39,7 +39,7 @@ const CardBack = ({ abilities, stats, id, experience }) => {
           {stats?.map((stat, index) => (
             <div className='stats--items' key={`stats-${id}-${index}`}>
               <div className='stats--image'>
-                <img src={`../assets/${stat?.stat?.name}.png`} alt='' />
+                <img src={`assets/${stat?.stat?.name}.png`} alt='' />
               </div>
               <div className='stats--progress'>
                 <label htmlFor={stat?.stat?.name}>
