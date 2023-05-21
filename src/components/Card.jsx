@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { Card } from 'antd'
+import { Card, notification } from 'antd'
 import ButtonStart from './ButtonStart.jsx'
 import { setFavorite } from '../slices/dataSlice.js'
 import CardBack from './CardBack.jsx'
@@ -21,9 +21,25 @@ const PokemonCard = ({
 }) => {
   const dispatch = useDispatch()
   const cardRef = useRef(null)
+  const [api, contextHolder] = notification.useNotification()
 
-  const handleFavorite = () => {
+  const openNotificationWithIcon = (type) => {
+    const isAdd = type === 'success' ? 'added to' : 'removed from'
+
+    api[type]({
+      message: `The Pokemon`,
+      description: `${name} is ${isAdd} favorites`,
+    })
+  }
+
+  const handleFavorite = (favorite) => {
     dispatch(setFavorite({ pokemonId: id }))
+
+    if (!favorite) {
+      openNotificationWithIcon('success')
+    } else {
+      openNotificationWithIcon('error')
+    }
   }
 
   const handleClick = () => {
@@ -50,12 +66,15 @@ const PokemonCard = ({
 
   return (
     <>
+      {contextHolder}
       <div className={`pokemonList__card--front`}>
         <Card
           ref={cardRef}
           style={{ width: 240 }}
           title={name}
-          extra={<ButtonStart isFavorite={favorite} onClick={handleFavorite} />}
+          extra={
+            <ButtonStart isFavorite={favorite} onClick={() => handleFavorite(favorite)} />
+          }
           cover={<img src={avatar} alt={name} />}
           onClick={handleClick}
         >
