@@ -20,10 +20,21 @@ function App() {
 
   return (
     <div className='App'>
-      <Col span={10} offset={7} className='logo-pokedux'>
+      <Col
+        xs={{ span: 24 }}
+        sm={{ span: 20, offset: 2 }}
+        md={{ span: 16, offset: 4 }}
+        lg={{ span: 12, offset: 6 }}
+        className='logo-pokedux'
+      >
         <img src={logoPokedux} alt='Pokedux' />
       </Col>
-      <Col span={10} offset={7}>
+      <Col
+        xs={{ span: 24 }}
+        sm={{ span: 20, offset: 2 }}
+        md={{ span: 16, offset: 4 }}
+        lg={{ span: 12, offset: 6 }}
+      >
         <Searcher />
       </Col>
       {loading ? (
