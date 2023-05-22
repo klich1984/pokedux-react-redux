@@ -34,6 +34,7 @@ function App() {
         sm={{ span: 20, offset: 2 }}
         md={{ span: 16, offset: 4 }}
         lg={{ span: 12, offset: 6 }}
+        className='search-pokemon'
       >
         <Searcher />
       </Col>
