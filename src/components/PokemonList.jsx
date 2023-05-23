@@ -2,7 +2,7 @@ import PokemonCard from './Card'
 
 const PokemonList = ({ pokemons }) => {
   return (
-    <div className='pokemonList'>
+    <div className='pokemonList m-w'>
       {pokemons?.map((pokemon) => (
         <div key={`card-${pokemon.id}`} className='pokemonList__card--father'>
           <div className={`pokemonList__card`}>
