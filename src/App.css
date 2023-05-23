@@ -48,15 +48,18 @@
   justify-content   : center;
   gap               : 2rem;
   margin-block-start: 3rem;
-  padding-block-end : 1rem;
+  padding-block-end : 6rem;
 }
 
 .logo-pokedux {
-  margin-block: 2rem;
+  padding-inline: 2rem;
+  max-width     : 400px;
+  margin        : 2rem auto;
 }
 
 .logo-pokedux img {
-  filter: hue-rotate(90deg);
+  max-width: 1200px;
+  filter   : hue-rotate(90deg);
 }
 
 .search-pokemon input:hover,

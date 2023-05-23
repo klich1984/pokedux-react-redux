@@ -2,7 +2,7 @@ import React from 'react'
 import { Input } from 'antd'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { filterPokemonSearch } from '../slices/dataSlice.js'
-import { setFilled, setValue } from '../slices/searchSlice'
+import { setFilled, setValue, setMatchSearch } from '../slices/searchSlice'
 
 const Searcher = () => {
   const state = useSelector((state) => state.data, shallowEqual)
@@ -20,8 +20,15 @@ const Searcher = () => {
 
         return name.includes(value)
       })
+
+      if (searchResult.length === 0) {
+        dispatch(setMatchSearch(true))
+        return
+      }
+      dispatch(setMatchSearch(false))
       dispatch(filterPokemonSearch(searchResult))
     } else {
+      dispatch(setMatchSearch(false))
       dispatch(filterPokemonSearch([]))
     }
   }

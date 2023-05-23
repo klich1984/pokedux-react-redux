@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   value: '',
   filled: false,
+  noMatchSearch: false,
 }
 
 export const searchSlice = createSlice({
@@ -16,9 +17,13 @@ export const searchSlice = createSlice({
     setFilled: (state, action) => {
       state.filled = action.payload
     },
+
+    setMatchSearch: (state, action) => {
+      state.noMatchSearch = action.payload
+    },
   },
 })
 
-export const { setValue, setFilled } = searchSlice.actions
+export const { setValue, setFilled, setMatchSearch } = searchSlice.actions
 
 export default searchSlice.reducer
