@@ -91,6 +91,7 @@
   color     : #b3b3b3;
   transition: all 0.2s ease-out;
   z-index   : 1;
+  background: transparent;
 }
 
 .ant-input {
@@ -109,7 +110,7 @@
   width           : 15ch;
   height          : 12px;
   padding-inline  : 6px;
-  background-color: #fff;
+  background-color: transparent;
   border-radius   : 50px;
   z-index         : -1;
 }
