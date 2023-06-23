@@ -9,6 +9,7 @@ import PokemonList from './components/PokemonList'
 import logoPokedux from './assets/logoPokedux.svg'
 import { Footer } from 'antd/es/layout/layout'
 import ContentFooter from './components/ContentFooter'
+import Slider from './components/Slider'
 
 function App() {
   const state = useSelector((state) => state.data, shallowEqual)
@@ -39,7 +40,12 @@ function App() {
           <Spin spinning size='large' />
         </Col>
       ) : (
-        <PokemonList pokemons={state.isSearch ? state.searchPokemons : state.pokemons} />
+        <>
+          <Slider />
+          <PokemonList
+            pokemons={state.isSearch ? state.searchPokemons : state.pokemons}
+          />
+        </>
       )}
       <Footer span={24}>
         <ContentFooter />

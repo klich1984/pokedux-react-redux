@@ -5,6 +5,7 @@ import { setLoading } from './uiSlice'
 const initialState = {
   pokemons: [],
   searchPokemons: [],
+  listPokemonsFavorites: [],
   isSearch: false,
 }
 
@@ -59,6 +60,18 @@ export const dataSlice = createSlice({
       }
 
       updateFavorite(state.pokemons, action)
+
+      const thisPokemon = state.pokemons.filter(
+        (pokemon) => pokemon.id === action.payload.pokemonId
+      )
+
+      if (thisPokemon[0].favorite) {
+        state.listPokemonsFavorites.push(thisPokemon[0])
+      } else {
+        state.listPokemonsFavorites = state.listPokemonsFavorites.filter(
+          (pokemon) => pokemon.id !== action.payload.pokemonId
+        )
+      }
     },
   },
 })
