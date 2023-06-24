@@ -115,7 +115,8 @@
   z-index         : -1;
 }
 
-.ant-input:focus+.label::before {
+.ant-input:focus+.label::before,
+.label.bgBefore::before {
   background-color: #df3e07;
   padding         : 8px;
 }
