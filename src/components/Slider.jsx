@@ -1,9 +1,8 @@
 import { Button, Carousel, Col, Image, Row, notification } from 'antd'
 import { useRef, useState } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { setFavorite } from '../slices/dataSlice'
-import { DeleteFilled, DeleteTwoTone } from '@ant-design/icons'
+import { DeleteTwoTone } from '@ant-design/icons'
+import useFavorite from '../hooks/useFavorite'
 
 const contentStyle = {
   margin: 0,
@@ -17,7 +16,7 @@ const contentStyle = {
   alignItems: 'center',
 }
 const Slider = () => {
-  const dispatch = useDispatch()
+  const { handleFavorite: addRemoveFavorite } = useFavorite()
   const state = useSelector((state) => state.data, shallowEqual)
   const [disabled, setDisabled] = useState({
     next: true,
@@ -56,23 +55,10 @@ const Slider = () => {
     refCarousel.current.prev()
   }
 
-  const openNotificationWithIcon = (type, name) => {
-    const isAdd = type === 'success' ? 'added to' : 'removed from'
-
-    api[type]({
-      message: `The Pokemon`,
-      description: `${name} is ${isAdd} favorites`,
-    })
-  }
-
   const handleFavorite = (favorite) => {
-    dispatch(setFavorite({ pokemonId: favorite.id }))
+    const msgFavorite = addRemoveFavorite(favorite, favorite.id, favorite.name)
 
-    if (!favorite) {
-      openNotificationWithIcon('success', favorite.name)
-    } else {
-      openNotificationWithIcon('error', favorite.name)
-    }
+    api[msgFavorite.type](msgFavorite.content)
   }
 
   return (

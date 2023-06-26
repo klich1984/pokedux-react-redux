@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from 'react'
-import { useDispatch } from 'react-redux'
 
 import { Card, notification } from 'antd'
 import ButtonStart from './ButtonStart.jsx'
-import { setFavorite } from '../slices/dataSlice.js'
 import CardBack from './CardBack.jsx'
 import PokemonType from './PokemonType.jsx'
+import useFavorite from '../hooks/useFavorite.js'
 
 const { Meta } = Card
 
@@ -19,27 +18,14 @@ const PokemonCard = ({
   stats,
   experience,
 }) => {
-  const dispatch = useDispatch()
   const cardRef = useRef(null)
   const [api, contextHolder] = notification.useNotification()
-
-  const openNotificationWithIcon = (type) => {
-    const isAdd = type === 'success' ? 'added to' : 'removed from'
-
-    api[type]({
-      message: `The Pokemon`,
-      description: `${name} is ${isAdd} favorites`,
-    })
-  }
+  const { handleFavorite: addRemoveFavorite } = useFavorite()
 
   const handleFavorite = (favorite) => {
-    dispatch(setFavorite({ pokemonId: id }))
+    const msgFavorite = addRemoveFavorite(favorite, id, name)
 
-    if (!favorite) {
-      openNotificationWithIcon('success')
-    } else {
-      openNotificationWithIcon('error')
-    }
+    api[msgFavorite.type](msgFavorite.content)
   }
 
   const handleClick = () => {
