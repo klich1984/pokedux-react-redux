@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { getPokemonDetail, getPokemons } from '../api'
+import { getItem, setItem } from '../utils/localStorage'
 import { setLoading } from './uiSlice'
 
 const initialState = {
@@ -21,6 +22,10 @@ export const fetchPokemonsWithDetails = createAsyncThunk(
       pokemonsRes.map((pokemon) => getPokemonDetail(pokemon))
     )
     dispatch(setPokemons(pokemonDetails))
+
+    const pokemonFavorites = getItem('pokemonFavorites')
+
+    dispatch(getUpdateFavorites(pokemonFavorites))
     dispatch(setLoading(false))
   }
 )
@@ -65,17 +70,38 @@ export const dataSlice = createSlice({
         (pokemon) => pokemon.id === action.payload.pokemonId
       )
 
-      if (thisPokemon[0].favorite) {
+      if (thisPokemon[0]?.favorite) {
         state.listPokemonsFavorites.push(thisPokemon[0])
       } else {
         state.listPokemonsFavorites = state.listPokemonsFavorites.filter(
           (pokemon) => pokemon.id !== action.payload.pokemonId
         )
       }
+
+      setItem('pokemonFavorites', state.listPokemonsFavorites)
+    },
+
+    getUpdateFavorites: (state, action) => {
+      state.listPokemonsFavorites = action.payload
+
+      const updateFavorite = (listPokemons, id) => {
+        const currentPokemonIndexSearch = listPokemons.findIndex(
+          (pokemon) => pokemon.id === id
+        )
+
+        if (currentPokemonIndexSearch >= 0) {
+          listPokemons[currentPokemonIndexSearch].favorite = true
+        }
+      }
+
+      state.listPokemonsFavorites.map((pokemon) => {
+        updateFavorite(state.pokemons, pokemon.id)
+      })
     },
   },
 })
 
-export const { setFavorite, setPokemons, filterPokemonSearch } = dataSlice.actions
+export const { setFavorite, setPokemons, filterPokemonSearch, getUpdateFavorites } =
+  dataSlice.actions
 
 export default dataSlice.reducer
