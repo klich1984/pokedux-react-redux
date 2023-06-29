@@ -1,9 +1,9 @@
 import { Button, Carousel, Col, Image, Row, notification } from 'antd'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { setFavorite } from '../slices/dataSlice'
-import { DeleteFilled, DeleteTwoTone } from '@ant-design/icons'
+import { DeleteTwoTone } from '@ant-design/icons'
 
 const contentStyle = {
   margin: 0,
@@ -28,6 +28,15 @@ const Slider = () => {
   const refCarousel = useRef(null)
 
   const favoritesPokemons = state.listPokemonsFavorites
+
+  useEffect(() => {
+    if (favoritesPokemons.length > 1) {
+      setDisabled({
+        prev: true,
+        next: false,
+      })
+    }
+  }, [])
 
   const onChange = (currentSlide) => {
     if (currentSlide === 0) {
