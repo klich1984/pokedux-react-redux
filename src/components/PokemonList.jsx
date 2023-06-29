@@ -1,8 +1,14 @@
+import { shallowEqual, useSelector } from 'react-redux'
 import PokemonCard from './Card'
+import NoMatch from './NoMatch'
 
 const PokemonList = ({ pokemons }) => {
+  const search = useSelector((state) => state.search, shallowEqual)
+
+  if (search.noMatchSearch) return <NoMatch />
+
   return (
-    <div className='pokemonList'>
+    <div className='pokemonList m-w'>
       {pokemons?.map((pokemon) => (
         <div key={`card-${pokemon.id}`} className='pokemonList__card--father'>
           <div className={`pokemonList__card`}>

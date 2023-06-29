@@ -1,9 +1,7 @@
 /* @import '~antd/dist/antd.css'; */
 
 #root {
-  max-width : 1280px;
   margin    : 0 auto;
-  padding   : 2rem;
   text-align: center;
 }
 
@@ -34,24 +32,34 @@
   outline: initial;
 }
 
+.m-w {
+  max-width: 1440px;
+  margin   : 0 auto;
+}
+
 .read-the-docs {
   color: #888;
 }
 
 .pokemonList {
   display           : flex;
+  padding-inline    : 2rem;
   flex-wrap         : wrap;
   justify-content   : center;
   gap               : 2rem;
   margin-block-start: 3rem;
+  padding-block-end : 6rem;
 }
 
 .logo-pokedux {
-  margin-block-end: 2rem;
+  padding-inline: 2rem;
+  max-width     : 400px;
+  margin        : 2rem auto;
 }
 
 .logo-pokedux img {
-  filter: hue-rotate(90deg);
+  max-width: 1200px;
+  filter   : hue-rotate(90deg);
 }
 
 .search-pokemon input:hover,
@@ -83,6 +91,7 @@
   color     : #b3b3b3;
   transition: all 0.2s ease-out;
   z-index   : 1;
+  background: transparent;
 }
 
 .ant-input {
@@ -97,13 +106,19 @@
   content         : "";
   position        : absolute;
   left            : -4px;
-  top             : 6px;
-  width           : 100%;
+  top             : 5px;
+  width           : 15ch;
   height          : 12px;
   padding-inline  : 6px;
-  background-color: #fff;
+  background-color: transparent;
   border-radius   : 50px;
   z-index         : -1;
+}
+
+.ant-input:focus+.label::before,
+.label.bgBefore::before {
+  background-color: #df3e07;
+  padding         : 8px;
 }
 
 .ant-input:focus+.label,
@@ -112,6 +127,7 @@
   left     : 8px;
   color    : #878787;
   font-size: 14px;
+  color    : white;
 }
 
 .ant-input:focus+.label::before,
@@ -224,7 +240,7 @@
   margin-block: 4px;
 }
 
-.ant-card .ant-card-cover {
+.pokemonList__card--front .ant-card .ant-card-cover {
   margin       : 0;
   padding-block: 1rem;
   background   : radial-gradient(circle, rgba(26, 56, 112, 1) 0%, rgb(255 255 255) 48%, rgba(26, 56, 112, 1) 100%);
@@ -232,48 +248,48 @@
   transition   : all 0.2s ease-out;
 }
 
-.ant-card .ant-card-cover:hover img {
+.pokemonList__card--front .ant-card .ant-card-cover:hover img {
   transform : scale(1.1);
   transition: all 0.2s ease-out;
 }
 
-.ant-card .ant-card-cover img {
+.pokemonList__card--front .ant-card .ant-card-cover img {
   pointer-events: none;
 }
 
-.ant-card .ant-card-head {
+.pokemonList__card--front .ant-card .ant-card-head {
   background: linear-gradient(12deg, rgba(0, 0, 0, 1) 0%, rgba(242, 21, 12, 1) 50%, rgba(0, 0, 0, 1) 100%);
 }
 
-.ant-card-head .ant-card-head-wrapper {
+.pokemonList__card--front .ant-card-head .ant-card-head-wrapper {
   font-size  : 20px;
   color      : #f4e811;
   text-shadow: black 0.1em 0.1em 0.2em;
 }
 
-.ant-card-head .ant-card-head-wrapper .ant-card-extra button {
+.pokemonList__card--front .ant-card-head .ant-card-head-wrapper .ant-card-extra button {
   background-color: transparent;
   border-color    : transparent;
   box-shadow      : none;
 }
 
-.ant-card-head .ant-card-head-wrapper .ant-card-extra button:hover {
+.pokemonList__card--front .ant-card-head .ant-card-head-wrapper .ant-card-extra button:hover {
   transform: scale(1.3);
 }
 
-.ant-card-head .ant-card-head-wrapper .ant-card-extra button:focus {
+.pokemonList__card--front .ant-card-head .ant-card-head-wrapper .ant-card-extra button:focus {
   outline: none;
 }
 
-.ant-card-head-wrapper .ant-card-extra button span {
+.pokemonList__card--front .ant-card-head-wrapper .ant-card-extra button span {
   font-size: 20px;
 }
 
-.ant-card-head-wrapper .ant-card-extra button svg {
+.pokemonList__card--front .ant-card-head-wrapper .ant-card-extra button svg {
   fill: #f4e811;
 }
 
-.ant-card .ant-card-body {
+.pokemonList__card--front .ant-card .ant-card-body {
   padding   : 12px;
   background: linear-gradient(12deg, rgba(0, 0, 0, 1) 0%, rgba(242, 21, 12, 1) 50%, rgba(0, 0, 0, 1) 100%);
 }
@@ -439,6 +455,89 @@
   background-color: #F00;
   width           : 60%;
   width           : calc(var(--width-progress) * 100% / 130);
+}
+
+.App footer {
+  margin-block-start: 1rem;
+  width             : 100%;
+  position          : fixed;
+  bottom            : 0;
+  padding           : 0.5rem 1rem;
+  background-color  : #30475e;
+  color             : #fff;
+}
+
+/* carousel */
+.carousel__container {
+  position : relative;
+  max-width: 800px;
+  margin   : 1rem auto;
+}
+
+.carousel__container>div {
+  border-radius: 8px;
+}
+
+.carousel__container .ant-carousel {
+  width : 85%;
+  margin: 1rem auto 0;
+}
+
+.carousel__container--content {
+  justify-content: center;
+  column-gap     : 1rem;
+}
+
+.carousel__container--header {
+  justify-content: center;
+}
+
+.ant-col.carousel__container--content-col {
+  padding: 1rem;
+}
+
+.ant-row .carousel__container--content {
+  margin-block-start: 0.5rem;
+}
+
+.carousel__icon--delete path:first-child {
+  fill: transparent;
+}
+
+.carousel__container--description {
+  font-weight: 500;
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.carousel__container--description span:last-child {
+  color: #f4e811;
+}
+
+.carousel__container--buttons {
+  position       : absolute;
+  top            : 30%;
+  display        : flex;
+  width          : 100%;
+  justify-content: space-between;
+  padding-inline : 1rem;
+}
+
+.carousel__container .carousel__container--buttons button:hover {
+  color       : #374a58;
+  border-color: #374a58;
+}
+
+
+/* End carousel */
+
+footer .footer-content {
+  column-gap: 3rem;
+}
+
+footer .footer-content-icon svg {
+  width : 25px;
+  height: 25px;
+  fill  : #f4e811;
 }
 
 @keyframes pulso {
