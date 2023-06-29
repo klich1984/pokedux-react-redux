@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { shallowEqual, useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { setFavorite } from '../slices/dataSlice'
-import { DeleteFilled, DeleteTwoTone } from '@ant-design/icons'
+import { DeleteTwoTone } from '@ant-design/icons'
 
 const contentStyle = {
   margin: 0,
